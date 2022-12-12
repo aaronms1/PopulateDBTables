@@ -5,8 +5,7 @@
  # This script populates the DynamoDB tables on aws with data from #
 # the  DynamoDB files automatically using a perl script rather    #
  # than the aws cli and a an unsecure json file run from a shell   #
-# script... no offence to the aws cli, but I prefer to use perl   #
- # for security purposes, plus perl is ALIVE!                      #
+# script...              plus perl is ALIVE!                      #
 ###################################################################
 use strict;
 use warnings;
@@ -31,6 +30,8 @@ chomp($key);
 $key =~ s/aws_access_key_id = //;
 ### hide the key with '*'
 $key =~ s/./\*/g;
+### bash script that had the aws commands, this could be done here as well,
+### but I wanted to keep the script as simple as possible.
 my @lines = `cat configurations/commands.sh`;
 ### loop through the array and execute the commands with a traditional 4loop
 for (my $idx = 0; $idx < scalar(@lines); $idx++) {
